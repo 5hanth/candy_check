@@ -11,15 +11,15 @@ module CandyCheck
         if valid?
           Subscription.new(@response)
         else
-          VerificationFailure.new(@response['error'])
+          VerificationFailure.new(@response[:error])
         end
       end
 
       private
 
       def valid?
-        ok_kind = @response['kind'] == 'androidpublisher#subscriptionPurchase'
-        @response && @response['expiryTimeMillis'] && ok_kind
+        ok_kind = @response[:kind] == 'androidpublisher#subscriptionPurchase'
+        @response && @response[:expiryTimeMillis] && ok_kind
       end
 
       def verify!
